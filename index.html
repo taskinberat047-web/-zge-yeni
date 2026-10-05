@@ -4,118 +4,255 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Özge'ye — Kalbimden</title>
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    :root {
+      --bg: #fff7f8;
+      --rose: #c34b68;
+      --dark: #38242a;
+      --soft: #f6dce2;
+      --card: rgba(255, 255, 255, 0.8);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--dark);
+      background:
+        radial-gradient(circle at top left, #ffe6eb 0, transparent 35%),
+        radial-gradient(circle at bottom right, #f8dce4 0, transparent 35%),
+        var(--bg);
+    }
+
+    .hero {
+      min-height: 55vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 70px 20px 45px;
+    }
+
+    .eyebrow {
+      margin: 0;
+      color: var(--rose);
+      font-size: 0.95rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 12px 0;
+      font-size: clamp(3.5rem, 11vw, 7rem);
+      font-weight: normal;
+      color: var(--rose);
+    }
+
+    .intro {
+      max-width: 570px;
+      margin: 0;
+      line-height: 1.8;
+      font-size: 1.15rem;
+    }
+
+    .heart {
+      color: var(--rose);
+      font-size: 1.6rem;
+      margin-top: 22px;
+    }
+
+    .gallery {
+      width: min(1050px, 92%);
+      margin: 0 auto;
+      padding: 15px 0 70px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .memory {
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid rgba(195, 75, 104, 0.18);
+      border-radius: 22px;
+      box-shadow: 0 14px 35px rgba(87, 37, 49, 0.12);
+    }
+
+    .memory img {
+      display: block;
+      width: 100%;
+      height: 330px;
+      object-fit: cover;
+    }
+
+    .content {
+      padding: 23px;
+      text-align: center;
+    }
+
+    .number {
+      color: var(--rose);
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+    }
+
+    h2 {
+      margin: 10px 0 18px;
+      font-size: 1.65rem;
+      font-weight: normal;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 19px;
+      background: var(--rose);
+      color: white;
+      font: inherit;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    button:hover {
+      background: #a93653;
+      transform: translateY(-2px);
+    }
+
+    .poem {
+      display: none;
+      margin-top: 20px;
+      padding: 17px;
+      border-radius: 13px;
+      background: var(--soft);
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .poem.open {
+      display: block;
+      animation: appear 0.4s ease;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    footer {
+      padding: 5px 20px 45px;
+      text-align: center;
+      color: var(--rose);
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 700px) {
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .memory img {
+        height: 300px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <div class="hearts" aria-hidden="true"></div>
+  <header class="hero">
+    <p class="eyebrow">sadece sana</p>
+    <h1>Özge</h1>
+    <p class="intro">
+      Bazı insanlar hayatımıza girer ve her şeyi biraz daha güzel yapar.
+    </p>
+    <div class="heart">♡</div>
+  </header>
 
-  <main>
-    <section class="hero">
-      <p class="eyebrow">sadece sana</p>
-      <h1>Özge</h1>
-      <p class="intro">Bazı insanlar hayatımıza girer ve her şeyi biraz daha güzel yapar.</p>
-      <div class="line"></div>
-    </section>
+  <main class="gallery">
+    <article class="memory">
+      <img src="foto1.jpeg" alt="Özge için ilk fotoğraf">
+      <div class="content">
+        <span class="number">01</span>
+        <h2>İlk baktığımda</h2>
+        <button onclick="togglePoem('poem1', true)">Şiiri ve müziği aç ♡</button>
+        <div class="poem" id="poem1">
+          Senin adın geçince değişiyor içimdeki bütün cümleler.<br>
+          Sanki dünya bir an duruyor da,<br>
+          gözlerin kalıyor aklımda.
+        </div>
+      </div>
+    </article>
 
-    <section class="gallery" id="gallery">
-      <article class="memory active" data-index="0">
-        <div class="photo-wrap">
-          <img src="images/foto1.jpeg" alt="Özge için ilk fotoğraf">
-          <div class="photo-shine"></div>
+    <article class="memory">
+      <img src="foto2.jpeg" alt="Özge için ikinci fotoğraf">
+      <div class="content">
+        <span class="number">02</span>
+        <h2>Senin değerini</h2>
+        <button onclick="togglePoem('poem2', false)">Şiiri aç ♡</button>
+        <div class="poem" id="poem2">
+          Sana baktıkça sadece güzelliğini değil,<br>
+          kalbimde bıraktığın yeri görüyorum.<br>
+          Ve her defasında biraz daha anlıyorum:<br>
+          iyi ki varsın Özge.
         </div>
-        <div class="card">
-          <span class="number">01</span>
-          <h2>İlk baktığımda</h2>
-          <button class="poem-btn first-btn">Şiiri ve müziği aç <span>♡</span></button>
-          <div class="poem" id="poem0">
-            <p>Senin adın geçince değişiyor içimdeki bütün cümleler<br>
-            Sanki dünya bir an duruyor da<br>
-            Gözlerin kalıyor aklımda</p>
-            <p>Sana baktıkça sadece güzelliğini değil<br>
-            Kalbimde bıraktığın yeri görüyorum<br>
-            Ve her defasında biraz daha anlıyorum<br>
-            İyi ki varsın Özge</p>
-          </div>
-        </div>
-      </article>
+      </div>
+    </article>
 
-      <article class="memory" data-index="1">
-        <div class="photo-wrap">
-          <img src="images/foto2.jpeg" alt="Özge için ikinci fotoğraf">
-          <div class="photo-shine"></div>
+    <article class="memory">
+      <img src="foto3.jpeg" alt="Özge için üçüncü fotoğraf">
+      <div class="content">
+        <span class="number">03</span>
+        <h2>Gülüşünle</h2>
+        <button onclick="togglePoem('poem3', false)">Şiiri aç ♡</button>
+        <div class="poem" id="poem3">
+          Gülüşün değince günün en sessiz yerine,<br>
+          içimde bahar başlıyor.<br>
+          Her şey biraz daha hafif,<br>
+          her şey biraz daha güzel oluyor.
         </div>
-        <div class="card">
-          <span class="number">02</span>
-          <h2>Senin değerini</h2>
-          <button class="poem-btn">Şiiri aç <span>♡</span></button>
-          <div class="poem">
-            <p>Bir insanı sevmek<br>
-            Onu her haliyle görmekmiş<br>
-            Gülüşünü de sessizliğini de<br>
-            Kırgınlığını da özlemini de</p>
-            <p>Ben sende sadece güzel olanı değil<br>
-            Seni sen yapan her şeyi seviyorum<br>
-            Çünkü sen benim için<br>
-            Herhangi biri değil<br>
-            Çok özel birisin</p>
-          </div>
-        </div>
-      </article>
+      </div>
+    </article>
 
-      <article class="memory" data-index="2">
-        <div class="photo-wrap">
-          <img src="images/foto3.jpeg" alt="Özge için üçüncü fotoğraf">
-          <div class="photo-shine"></div>
+    <article class="memory">
+      <img src="foto4.jpeg" alt="Özge için dördüncü fotoğraf">
+      <div class="content">
+        <span class="number">04</span>
+        <h2>İyi ki sen</h2>
+        <button onclick="togglePoem('poem4', false)">Şiiri aç ♡</button>
+        <div class="poem" id="poem4">
+          Hayatın en güzel tesadüflerinden birisin.<br>
+          Adın kalbimde en güzel cümle gibi duruyor.<br>
+          Ne olursa olsun,<br>
+          iyi ki sen varsın.
         </div>
-        <div class="card">
-          <span class="number">03</span>
-          <h2>Kalbimdeki yerin</h2>
-          <button class="poem-btn">Şiiri aç <span>♡</span></button>
-          <div class="poem">
-            <p>Belki kelimeler yetmez anlatmaya<br>
-            Belki bazen yanlış anlatırım kendimi<br>
-            Ama değişmeyen bir şey var<br>
-            O da sana verdiğim değer</p>
-            <p>Çünkü seninle geçen güzel anların<br>
-            Aklımda kalan en kıymetli hatıralarım<br>
-            Ve ne zaman seni düşünsem<br>
-            İçimde aynı sıcaklık yeniden başlıyor</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="memory" data-index="3">
-        <div class="photo-wrap">
-          <img src="images/foto4.jpeg" alt="Özge için dördüncü fotoğraf">
-          <div class="photo-shine"></div>
-        </div>
-        <div class="card">
-          <span class="number">04</span>
-          <h2>Son bir şey</h2>
-          <button class="poem-btn">Şiiri aç <span>♡</span></button>
-          <div class="poem">
-            <p>Bu dört fotoğraf belki sadece dört kare<br>
-            Ama benim için her biri senden bir parça<br>
-            Bir gülüş<br>
-            Bir bakış<br>
-            Bir an<br>
-            Bir hatıra</p>
-            <p>Ve bütün bunların içinde söylemek istediğim tek şey<br>
-            Seni seviyorum<br>
-            Sana değer veriyorum<br>
-            Ve iyi ki hayatımda güzel bir iz bıraktın</p>
-          </div>
-        </div>
-      </article>
-    </section>
-
-    <footer>
-      <div class="footer-heart">♡</div>
-      <p>Kalpten yazıldı, sana bırakıldı.</p>
-    </footer>
+      </div>
+    </article>
   </main>
 
-  <audio id="music" src="music/ozge-romantik-muzik.wav" preload="auto" loop></audio>
-  <script src="script.js"></script>
+  <footer>Kalbimden, sana ♡</footer>
+
+  <audio id="music" src="ozge-romantik-muzik.wav" preload="auto" loop></audio>
+
+  <script>
+    function togglePoem(id, playMusic) {
+      const poem = document.getElementById(id);
+      poem.classList.toggle("open");
+
+      if (playMusic && poem.classList.contains("open")) {
+        document.getElementById("music").play();
+      }
+    }
+  </script>
 </body>
 </html>
