@@ -8,65 +8,67 @@
   <style>
     :root {
       --bg: #fff7f8;
-      --rose: #c34b68;
-      --dark: #38242a;
-      --soft: #f6dce2;
+      --rose: #bf4664;
+      --dark: #39242a;
+      --soft: #f8e1e7;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
       color: var(--dark);
+      font-family: Georgia, "Times New Roman", serif;
       background:
-        radial-gradient(circle at top left, #ffe6eb 0, transparent 35%),
-        radial-gradient(circle at bottom right, #f8dce4 0, transparent 35%),
+        radial-gradient(circle at top left, #ffe2e9, transparent 35%),
+        radial-gradient(circle at bottom right, #f8dce4, transparent 35%),
         var(--bg);
     }
 
     .hero {
       min-height: 52vh;
+      padding: 70px 20px 42px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 70px 20px 45px;
     }
 
     .eyebrow {
       margin: 0;
       color: var(--rose);
-      font-size: .9rem;
       letter-spacing: 4px;
       text-transform: uppercase;
+      font-size: 0.9rem;
     }
 
     h1 {
       margin: 12px 0;
+      color: var(--rose);
       font-size: clamp(3.5rem, 11vw, 7rem);
       font-weight: normal;
-      color: var(--rose);
     }
 
     .intro {
       max-width: 570px;
       margin: 0;
-      line-height: 1.8;
       font-size: 1.15rem;
+      line-height: 1.8;
     }
 
     .heart {
+      margin-top: 20px;
       color: var(--rose);
-      font-size: 1.6rem;
-      margin-top: 22px;
+      font-size: 1.7rem;
     }
 
     .gallery {
       width: min(1050px, 92%);
-      margin: 0 auto;
-      padding: 15px 0 70px;
+      margin: auto;
+      padding: 15px 0 48px;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 28px;
@@ -74,16 +76,16 @@
 
     .memory {
       overflow: hidden;
-      background: rgba(255, 255, 255, .8);
-      border: 1px solid rgba(195, 75, 104, .18);
+      border: 1px solid rgba(191, 70, 100, 0.18);
       border-radius: 22px;
-      box-shadow: 0 14px 35px rgba(87, 37, 49, .12);
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 14px 35px rgba(87, 37, 49, 0.12);
     }
 
     .memory img {
-      display: block;
       width: 100%;
       height: 330px;
+      display: block;
       object-fit: cover;
     }
 
@@ -94,7 +96,7 @@
 
     .number {
       color: var(--rose);
-      font-size: .85rem;
+      font-size: 0.85rem;
       letter-spacing: 3px;
     }
 
@@ -105,37 +107,44 @@
     }
 
     button {
+      padding: 12px 20px;
       border: 0;
       border-radius: 999px;
-      padding: 12px 19px;
       background: var(--rose);
       color: white;
       font: inherit;
       cursor: pointer;
+      transition: 0.2s;
     }
 
-    button:hover { background: #a93653; }
+    button:hover {
+      background: #a63452;
+      transform: translateY(-2px);
+    }
 
     .poem {
       display: none;
       margin-top: 20px;
-      padding: 17px;
+      padding: 18px;
       border-radius: 13px;
       background: var(--soft);
-      line-height: 1.85;
+      line-height: 1.9;
       font-size: 1rem;
     }
 
-    .poem.open, .music-box.open { display: block; }
+    .poem.open,
+    .music-box.open {
+      display: block;
+    }
 
     .music-box {
       display: none;
-      width: min(700px, 92%);
-      margin: 0 auto 40px;
+      width: min(760px, 92%);
+      margin: 0 auto 48px;
       padding: 10px;
-      background: white;
       border-radius: 18px;
-      box-shadow: 0 12px 28px rgba(87, 37, 49, .15);
+      background: white;
+      box-shadow: 0 12px 28px rgba(87, 37, 49, 0.15);
     }
 
     .music-box iframe {
@@ -148,14 +157,19 @@
 
     footer {
       padding: 5px 20px 45px;
-      text-align: center;
       color: var(--rose);
+      text-align: center;
       font-size: 1.1rem;
     }
 
     @media (max-width: 700px) {
-      .gallery { grid-template-columns: 1fr; }
-      .memory img { height: 300px; }
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .memory img {
+        height: 300px;
+      }
     }
   </style>
 </head>
@@ -164,79 +178,116 @@
   <header class="hero">
     <p class="eyebrow">sadece sana</p>
     <h1>Özge</h1>
-    <p class="intro">Bazı insanlar hayatımıza girer ve her şeyi biraz daha güzel yapar.</p>
+    <p class="intro">
+      Bazı insanlar hayatımıza girer ve her şeyi biraz daha güzel yapar.
+    </p>
     <div class="heart">♡</div>
   </header>
 
   <main class="gallery">
     <article class="memory">
       <img src="foto1.jpeg" alt="Özge için ilk fotoğraf">
+
       <div class="content">
         <span class="number">01</span>
         <h2>İlk baktığımda</h2>
         <button onclick="openFirstPoem()">Şiiri ve müziği aç ♡</button>
+
         <div class="poem" id="poem1">
           Senin adın geçince değişiyor içimdeki bütün cümleler.<br>
-          Sanki dünya bir an duruyor da, gözlerin kalıyor aklımda.<br><br>
-          Bir bakışınla başlayan o güzel his,<br>
-          zaman geçse bile içimde aynı yerde duruyor.<br>
-          Belki her şeyi anlatmaya kelimeler yetmez,<br>
-          ama kalbim seni düşününce hep aynı şeyi söylüyor:<br>
-          iyi ki varsın Özge.
+          Sanki dünya bir an duruyor ve o sessizlikte gözlerin kalıyor aklımda.<br>
+          Ne zaman seni düşünsem, içimde tarif etmesi zor bir sıcaklık başlıyor.<br><br>
+
+          Belki her şey bir anda olmadı,<br>
+          belki bazı duygular zamanla yerini buldu.<br>
+          Ama şunu hep bildim: sen benim için sıradan biri olmadın.<br>
+          Bir gülüşünle günü güzelleştiren,<br>
+          bir bakışınla içimde bin düşünce uyandıran biri oldun.<br><br>
+
+          Hayat bazen çok hızlı geçiyor,<br>
+          ama bazı insanlar o hızın içinde bile unutulmuyor.<br>
+          Sen de benim için öyle bir yerdesin.<br>
+          İyi ki varsın Özge, iyi ki kalbimde güzel bir iz bıraktın.
         </div>
       </div>
     </article>
 
     <article class="memory">
       <img src="foto2.jpeg" alt="Özge için ikinci fotoğraf">
+
       <div class="content">
         <span class="number">02</span>
         <h2>Senin değerini</h2>
         <button onclick="togglePoem('poem2')">Şiiri aç ♡</button>
+
         <div class="poem" id="poem2">
-          Bir insanı sevmek, onu yalnızca güzel anlarıyla sevmek değilmiş.<br>
-          Gülüşünü de sessizliğini de, mutlu hâlini de kırgınlığını da anlamakmış.<br><br>
-          Ben sende sadece güzel olanı değil,<br>
-          seni sen yapan her küçük ayrıntıyı seviyorum.<br>
-          Çünkü sen benim için herhangi biri değilsin;<br>
-          hayatımda izi olan, değeri kelimelerden büyük birisin.
+          Bir insanı sevmek, onu sadece güzel anlarıyla sevmek değilmiş.<br>
+          Gülüşünü de sessizliğini de, mutlu hâlini de kırgınlığını da anlamakmış.<br>
+          Çünkü insan en çok, olduğu gibi kabul edildiğinde değerli hissedermiş.<br><br>
+
+          Ben sende yalnızca dışarıdan görünen güzelliği değil,<br>
+          seni sen yapan bütün küçük ayrıntıları seviyorum.<br>
+          Bazen bir cümleni, bazen bir gülüşünü,<br>
+          bazen de hiçbir şey söylemeden bıraktığın o güzel hissi.<br><br>
+
+          Hayatımda birçok insan oldu belki,<br>
+          ama senin bıraktığın yer başka.<br>
+          Çünkü sen benim için herhangi biri değil,<br>
+          değeri kelimelerle anlatılamayacak kadar özel birisin.
         </div>
       </div>
     </article>
 
     <article class="memory">
       <img src="foto3.jpeg" alt="Özge için üçüncü fotoğraf">
+
       <div class="content">
         <span class="number">03</span>
         <h2>Kalbimdeki yerin</h2>
         <button onclick="togglePoem('poem3')">Şiiri aç ♡</button>
+
         <div class="poem" id="poem3">
           Belki bazen kendimi doğru anlatamıyorum,<br>
           belki bazı duygular içimde sessizce büyüyor.<br>
           Ama değişmeyen bir şey var:<br>
           sana verdiğim değer.<br><br>
-          Seninle geçen güzel anılar, aklımda kalan en kıymetli yerlerde duruyor.<br>
+
+          Seninle geçen güzel anılar, aklımda en kıymetli yerlerde duruyor.<br>
+          Zaman geçse de bazı detaylar silinmiyor;<br>
+          bir konuşma, bir bakış, bir gülüş,<br>
+          insanın kalbinde olduğu gibi kalıyor.<br><br>
+
           Seni düşündüğüm her anda içimde sıcak bir his başlıyor.<br>
           Ve anlıyorum ki bazı insanlar hayatımıza gelir,<br>
-          sonra kalbimizin en güzel köşesinde yaşamaya devam eder.
+          sonra kalbimizin en güzel köşesinde yaşamaya devam eder.<br>
+          Sen de benim için tam olarak o yerdesin.
         </div>
       </div>
     </article>
 
     <article class="memory">
       <img src="foto4.jpeg" alt="Özge için dördüncü fotoğraf">
+
       <div class="content">
         <span class="number">04</span>
         <h2>Son bir şey</h2>
         <button onclick="togglePoem('poem4')">Şiiri aç ♡</button>
+
         <div class="poem" id="poem4">
           Bu dört fotoğraf belki yalnızca dört kare.<br>
           Ama benim için her birinde senden kalan ayrı bir güzellik var.<br>
-          Bir gülüş, bir bakış, bir an, bir hatıra...<br><br>
-          Zaman geçse de bazı duygular eksilmiyor.<br>
-          Bazı insanların bıraktığı iz, kalpte hep aynı güzellikte kalıyor.<br>
+          Bir gülüş, bir bakış, bir an, bir hatıra...<br>
+          Hepsi birbirinden farklı ama hepsi aynı derecede değerli.<br><br>
+
+          Bazen bir fotoğraf insanı geçmişte güzel bir ana götürür.<br>
+          Bazen sadece bakıp sessizce gülümsetir.<br>
+          Çünkü bazı anılar, üzerinden ne kadar zaman geçerse geçsin,<br>
+          içimizdeki yerini hiç kaybetmez.<br><br>
+
           Sana söylemek istediğim en sade ve en gerçek şey şu:<br>
-          iyi ki hayatımda güzel bir iz bıraktın, Özge.
+          iyi ki hayatımda güzel bir iz bıraktın, Özge.<br>
+          Belki her şey kelimelere sığmaz,<br>
+          ama kalbimdeki değerin hep aynı güzellikte kalır.
         </div>
       </div>
     </article>
@@ -263,7 +314,9 @@
             title="Yıldız Tilbe - Aşk Yok Olmaktır"
             allow="autoplay; encrypted-media"
             allowfullscreen>
-          </iframe>`;
+          </iframe>
+        `;
+
         musicBox.classList.add("open");
         musicBox.scrollIntoView({ behavior: "smooth", block: "center" });
       }
