@@ -11,12 +11,9 @@
       --rose: #c34b68;
       --dark: #38242a;
       --soft: #f6dce2;
-      --card: rgba(255, 255, 255, 0.8);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -29,7 +26,7 @@
     }
 
     .hero {
-      min-height: 55vh;
+      min-height: 52vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -41,7 +38,7 @@
     .eyebrow {
       margin: 0;
       color: var(--rose);
-      font-size: 0.95rem;
+      font-size: .9rem;
       letter-spacing: 4px;
       text-transform: uppercase;
     }
@@ -77,10 +74,10 @@
 
     .memory {
       overflow: hidden;
-      background: var(--card);
-      border: 1px solid rgba(195, 75, 104, 0.18);
+      background: rgba(255, 255, 255, .8);
+      border: 1px solid rgba(195, 75, 104, .18);
       border-radius: 22px;
-      box-shadow: 0 14px 35px rgba(87, 37, 49, 0.12);
+      box-shadow: 0 14px 35px rgba(87, 37, 49, .12);
     }
 
     .memory img {
@@ -97,7 +94,7 @@
 
     .number {
       color: var(--rose);
-      font-size: 0.85rem;
+      font-size: .85rem;
       letter-spacing: 3px;
     }
 
@@ -115,13 +112,9 @@
       color: white;
       font: inherit;
       cursor: pointer;
-      transition: transform 0.2s, background 0.2s;
     }
 
-    button:hover {
-      background: #a93653;
-      transform: translateY(-2px);
-    }
+    button:hover { background: #a93653; }
 
     .poem {
       display: none;
@@ -129,25 +122,28 @@
       padding: 17px;
       border-radius: 13px;
       background: var(--soft);
-      line-height: 1.8;
+      line-height: 1.85;
       font-size: 1rem;
     }
 
-    .poem.open {
-      display: block;
-      animation: appear 0.4s ease;
+    .poem.open, .music-box.open { display: block; }
+
+    .music-box {
+      display: none;
+      width: min(700px, 92%);
+      margin: 0 auto 40px;
+      padding: 10px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 12px 28px rgba(87, 37, 49, .15);
     }
 
-    @keyframes appear {
-      from {
-        opacity: 0;
-        transform: translateY(-8px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .music-box iframe {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      border-radius: 12px;
     }
 
     footer {
@@ -158,13 +154,8 @@
     }
 
     @media (max-width: 700px) {
-      .gallery {
-        grid-template-columns: 1fr;
-      }
-
-      .memory img {
-        height: 300px;
-      }
+      .gallery { grid-template-columns: 1fr; }
+      .memory img { height: 300px; }
     }
   </style>
 </head>
@@ -173,9 +164,7 @@
   <header class="hero">
     <p class="eyebrow">sadece sana</p>
     <h1>Özge</h1>
-    <p class="intro">
-      Bazı insanlar hayatımıza girer ve her şeyi biraz daha güzel yapar.
-    </p>
+    <p class="intro">Bazı insanlar hayatımıza girer ve her şeyi biraz daha güzel yapar.</p>
     <div class="heart">♡</div>
   </header>
 
@@ -185,11 +174,15 @@
       <div class="content">
         <span class="number">01</span>
         <h2>İlk baktığımda</h2>
-        <button onclick="togglePoem('poem1', true)">Şiiri ve müziği aç ♡</button>
+        <button onclick="openFirstPoem()">Şiiri ve müziği aç ♡</button>
         <div class="poem" id="poem1">
           Senin adın geçince değişiyor içimdeki bütün cümleler.<br>
-          Sanki dünya bir an duruyor da,<br>
-          gözlerin kalıyor aklımda.
+          Sanki dünya bir an duruyor da, gözlerin kalıyor aklımda.<br><br>
+          Bir bakışınla başlayan o güzel his,<br>
+          zaman geçse bile içimde aynı yerde duruyor.<br>
+          Belki her şeyi anlatmaya kelimeler yetmez,<br>
+          ama kalbim seni düşününce hep aynı şeyi söylüyor:<br>
+          iyi ki varsın Özge.
         </div>
       </div>
     </article>
@@ -199,12 +192,14 @@
       <div class="content">
         <span class="number">02</span>
         <h2>Senin değerini</h2>
-        <button onclick="togglePoem('poem2', false)">Şiiri aç ♡</button>
+        <button onclick="togglePoem('poem2')">Şiiri aç ♡</button>
         <div class="poem" id="poem2">
-          Sana baktıkça sadece güzelliğini değil,<br>
-          kalbimde bıraktığın yeri görüyorum.<br>
-          Ve her defasında biraz daha anlıyorum:<br>
-          iyi ki varsın Özge.
+          Bir insanı sevmek, onu yalnızca güzel anlarıyla sevmek değilmiş.<br>
+          Gülüşünü de sessizliğini de, mutlu hâlini de kırgınlığını da anlamakmış.<br><br>
+          Ben sende sadece güzel olanı değil,<br>
+          seni sen yapan her küçük ayrıntıyı seviyorum.<br>
+          Çünkü sen benim için herhangi biri değilsin;<br>
+          hayatımda izi olan, değeri kelimelerden büyük birisin.
         </div>
       </div>
     </article>
@@ -213,13 +208,17 @@
       <img src="foto3.jpeg" alt="Özge için üçüncü fotoğraf">
       <div class="content">
         <span class="number">03</span>
-        <h2>Gülüşünle</h2>
-        <button onclick="togglePoem('poem3', false)">Şiiri aç ♡</button>
+        <h2>Kalbimdeki yerin</h2>
+        <button onclick="togglePoem('poem3')">Şiiri aç ♡</button>
         <div class="poem" id="poem3">
-          Gülüşün değince günün en sessiz yerine,<br>
-          içimde bahar başlıyor.<br>
-          Her şey biraz daha hafif,<br>
-          her şey biraz daha güzel oluyor.
+          Belki bazen kendimi doğru anlatamıyorum,<br>
+          belki bazı duygular içimde sessizce büyüyor.<br>
+          Ama değişmeyen bir şey var:<br>
+          sana verdiğim değer.<br><br>
+          Seninle geçen güzel anılar, aklımda kalan en kıymetli yerlerde duruyor.<br>
+          Seni düşündüğüm her anda içimde sıcak bir his başlıyor.<br>
+          Ve anlıyorum ki bazı insanlar hayatımıza gelir,<br>
+          sonra kalbimizin en güzel köşesinde yaşamaya devam eder.
         </div>
       </div>
     </article>
@@ -228,29 +227,45 @@
       <img src="foto4.jpeg" alt="Özge için dördüncü fotoğraf">
       <div class="content">
         <span class="number">04</span>
-        <h2>İyi ki sen</h2>
-        <button onclick="togglePoem('poem4', false)">Şiiri aç ♡</button>
+        <h2>Son bir şey</h2>
+        <button onclick="togglePoem('poem4')">Şiiri aç ♡</button>
         <div class="poem" id="poem4">
-          Hayatın en güzel tesadüflerinden birisin.<br>
-          Adın kalbimde en güzel cümle gibi duruyor.<br>
-          Ne olursa olsun,<br>
-          iyi ki sen varsın.
+          Bu dört fotoğraf belki yalnızca dört kare.<br>
+          Ama benim için her birinde senden kalan ayrı bir güzellik var.<br>
+          Bir gülüş, bir bakış, bir an, bir hatıra...<br><br>
+          Zaman geçse de bazı duygular eksilmiyor.<br>
+          Bazı insanların bıraktığı iz, kalpte hep aynı güzellikte kalıyor.<br>
+          Sana söylemek istediğim en sade ve en gerçek şey şu:<br>
+          iyi ki hayatımda güzel bir iz bıraktın, Özge.
         </div>
       </div>
     </article>
   </main>
 
+  <div class="music-box" id="musicBox"></div>
+
   <footer>Kalbimden, sana ♡</footer>
 
-  <audio id="music" src="ozge-romantik-muzik.wav" preload="auto" loop></audio>
-
   <script>
-    function togglePoem(id, playMusic) {
-      const poem = document.getElementById(id);
-      poem.classList.toggle("open");
+    function togglePoem(id) {
+      document.getElementById(id).classList.toggle("open");
+    }
 
-      if (playMusic && poem.classList.contains("open")) {
-        document.getElementById("music").play();
+    function openFirstPoem() {
+      document.getElementById("poem1").classList.toggle("open");
+
+      const musicBox = document.getElementById("musicBox");
+
+      if (!musicBox.classList.contains("open")) {
+        musicBox.innerHTML = `
+          <iframe
+            src="https://www.youtube.com/embed/7iY-5sjzTzk?autoplay=1"
+            title="Yıldız Tilbe - Aşk Yok Olmaktır"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+          </iframe>`;
+        musicBox.classList.add("open");
+        musicBox.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     }
   </script>
